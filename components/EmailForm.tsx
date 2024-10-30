@@ -2,12 +2,18 @@
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { AtSign, Mail } from "lucide-react"
 
 export default function EmailForm() {
   const [email, setEmail] = useState<string>();
+  const [instagram, setInstagram] = useState<string>();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+  };
+
+  const handleInstagramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInstagram(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,17 +48,17 @@ export default function EmailForm() {
             Email address
           </label>
           <input
-            autoComplete="email"
-            className="text-accent-500 block h-10 w-full focus:invalid:border-red-400 focus:invalid:text-red-500 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
-            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-            id="email-address"
-            name="email"
-            placeholder="johndoe@example.com"
-            required
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
+              autoComplete="email"
+              className="text-accent-500 block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+              id="email-address"
+              name="email"
+              placeholder="johndoe@example.com"
+              required
+              type="email"
+              value={email}
+              onChange={handleEmailChange}>
+          </input>
           <button
             className="flex h-10 shrink-0 items-center justify-center gap-1 rounded-lg bg-[#000F2D] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-zinc-700"
             type="submit"
