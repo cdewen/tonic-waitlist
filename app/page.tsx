@@ -16,7 +16,7 @@ export default function Home() {
 
 
       <section className="w-screen h-dvh grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="md:h-full h-80 bg-[#FCD0A1] relative overflow-hidden">
+        <div className="md:h-full h-80 bg-red-400 relative overflow-hidden">
           <Image
             src="/mobile-app.png"
             alt="Mobile App Screenshots"
@@ -35,7 +35,7 @@ export default function Home() {
           />
 
           
-          <h1 className="font-semibold font-serif tracking-tight text-zinc-900 text-3xl leading-tight md:text-4xl max-w-lg">
+          <h1 className="font-semibold font-serif tracking-tight text-zinc-900 lg:text-5xl md:text-5xl text-4xl leading-tight ">
             Got <span className="text-purple-500">influence</span>?<br></br>Get <span className="text-purple-500">rewards</span>.
           </h1>
           <p className="text-gray-500 max-w-lg">

@@ -7,7 +7,7 @@ export default function ThankYou() {
           navigator.share({
             title: 'Join Tonic Waitlist',
             text: 'I just joined the waitlist for Tonic! Check it out:',
-            url: 'https://tonic.com/',
+            url: 'https://tonictheapp.com/',
           }).catch(console.error);
         } else {
           // Fallback for browsers that don't support Web Share API
