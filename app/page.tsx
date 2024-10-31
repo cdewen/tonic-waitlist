@@ -21,6 +21,7 @@ export default function Home() {
             alt="Mobile App Screenshots"
             fill
             className="object-contain mt-8 md:mt-24 px-14 object-bottom"
+            priority={true}
           />
         </div>
 
@@ -30,6 +31,7 @@ export default function Home() {
           alt="logo"
           width={120}
           height={120}
+          priority={true}
           />
 
           
