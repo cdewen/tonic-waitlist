@@ -4,7 +4,6 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { AtSign, LassoSelect, Mail, UserIcon } from "lucide-react"
 
-//make it so that the component can accept the callback function setSignedUp={setSignedUp}
 interface Props {
   setSignedUp: (value: boolean) => void
 }
@@ -34,7 +33,11 @@ export default function EmailForm(Props: Props) {
 
     const formBody = `firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&email=${encodeURIComponent(email)}&instagram=${encodeURIComponent(instagram)}`
 
-    fetch("https://app.loops.so/api/newsletter-form/cm2sg3l9p01dhewos9xykgaql", {
+    const url = `https://app.loops.so/api/newsletter-form/cm2sg3l9p01dhewos9xykgaql`
+
+    console.log(process.env.LOOPS_PATH)
+
+    fetch(url, {
       method: "POST",
       body: formBody,
       headers: {
