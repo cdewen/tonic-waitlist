@@ -1,5 +1,4 @@
 "use client";
-import EmailTest from "@/components/EmailTest";
 import EmailForm from "@/components/EmailForm";
 import ThankYou from "@/components/ThankYou";
 import Image from "next/image";
@@ -36,14 +35,14 @@ export default function Home() {
 
           
           <h1 className="font-semibold font-serif tracking-tight text-zinc-900 lg:text-5xl md:text-5xl text-4xl leading-tight ">
-            Got <span className="text-purple-500">influence</span>?<br></br>Get <span className="text-purple-500">rewards</span>.
+            Got <span className="bg-gradient-to-tr from-violet-600 to-blue-500 bg-clip-text text-transparent drop-shadow-md">influence</span>?<br></br>Get <span className="bg-gradient-to-tr from-violet-600 to-blue-500 bg-clip-text text-transparent drop-shadow-md">rewards</span>.
           </h1>
           <p className="text-gray-500 max-w-lg">
-            Join the waitlist to join the club where you instagram stories can earn
+            Join the club where you instagram stories can earn
             you exclusive deals at all your favorite spots.
           </p>
           {
-            !signedUp ? <EmailTest setSignedUp={setSignedUp} /> : <ThankYou />
+            !signedUp ? <EmailForm setSignedUp={setSignedUp} /> : <ThankYou />
           }
         </main>
       </section>

@@ -2,79 +2,100 @@
 import { InfoCircledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { AtSign, Mail } from "lucide-react"
+import { AtSign, LassoSelect, Mail, UserIcon } from "lucide-react"
 
-export default function EmailForm() {
-  const [email, setEmail] = useState<string>();
-  const [instagram, setInstagram] = useState<string>();
+export default function EmailForm(Props) {
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  const [formData, setFormData] = useState({
+    name: '',
+    instagram: '',
+    email: ''
+  })
 
-  const handleInstagramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInstagram(e.target.value);
-  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }))
+  }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
 
-    try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
+    const { name, instagram, email } = formData
 
-      if (response.ok) {
-        setEmail("");
-        toast.success("Thank you for joining our waitlist! 🚀");
+    const firstName = name ? name.split(' ')[0] : ''
+    const lastName = name ? name.split(' ')[1] : ''
+
+    const formBody = `firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&email=${encodeURIComponent(email)}&instagram=${encodeURIComponent(instagram)}`
+
+    fetch("https://app.loops.so/api/newsletter-form/cm2sg3l9p01dhewos9xykgaql", {
+      method: "POST",
+      body: formBody,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    .then((res) => {
+      if (res.ok) {
+        toast.success('You have been added to the waitlist!')
+        Props.setSignedUp(true)
       } else {
-        setEmail("");
-        toast.error("Oops! Something went wrong!");
+        toast.error('There was an error. Please try again.')
       }
-    } catch (err) {
-      setEmail("");
-      console.error(err);
-    }
-  };
+    })
+  }
+
   return (
     <>
-      <form onSubmit={handleSubmit} method="POST" className="mt-2 max-w-sm">
-        <div className="flex flex-col gap-2 lg:flex-row">
-          <label className="sr-only" htmlFor="email-address">
-            Email address
-          </label>
-          <input
-              autoComplete="email"
-              className="text-accent-500 block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
-              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-              id="email-address"
-              name="email"
-              placeholder="johndoe@example.com"
-              required
-              type="email"
-              value={email}
-              onChange={handleEmailChange}>
-          </input>
-          <button
-            className="flex h-10 shrink-0 items-center justify-center gap-1 rounded-lg bg-[#000F2D] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-zinc-700"
-            type="submit"
-          >
-            <span>Join the waitlist</span>
-          </button>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="space-y-2">
+            <label htmlFor="name" className="sr-only">Name</label>
+            <div className="relative">
+                <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+                <input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="text-accent-500 max-w-lg block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
+                    placeholder="Full Name (Optional)"
+                />
+            </div>
+            <label htmlFor="instagram" className="sr-only">Instagram</label>
+            <div className="relative">
+                <AtSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+                <input
+                  id="instagram"
+                  name="instagram"
+                  value={formData.instagram}
+                  onChange={handleInputChange}
+                  className="text-accent-500 max-w-lg block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
+                  placeholder="instagram username"
+                required/>
+            </div>
+            <label htmlFor="email" className="sr-only">Name</label>
+            <div className="relative">
+                <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
+                <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="text-accent-500 max-w-lg block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
+                    placeholder="name@email.com"
+                required/>
+            </div>
+            <button
+                className="flex h-10 shrink-0 items-center justify-center gap-1 rounded-lg bg-[#000F2D] px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-zinc-700"
+                type="submit"
+                >
+                <span>Join the waitlist</span>
+            </button>
         </div>
-      </form>
-
-      <div className="flex items-start gap-2 text-gray-500">
-        <InfoCircledIcon />
-        <p className="text-xs -mt-[0.5] max-w-sm">
-          No worries! your data is completely safe and will only be utilized to
-          provide you with updates about our product.
-        </p>
-      </div>
+        </form>
     </>
   );
 }
