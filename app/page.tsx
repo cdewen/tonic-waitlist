@@ -37,7 +37,7 @@ export default function Home() {
             Got <span className="bg-gradient-to-tr from-violet-600 to-blue-500 bg-clip-text text-transparent drop-shadow-md">influence</span>?<br></br>Get <span className="bg-gradient-to-tr from-violet-600 to-blue-500 bg-clip-text text-transparent drop-shadow-md">rewards</span>.
           </h1>
           <p className="text-gray-500 max-w-lg">
-            Join the club where you instagram stories can earn
+            Join the club where your instagram stories can earn
             you exclusive deals at all your favorite spots.
           </p>
           {
