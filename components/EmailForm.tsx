@@ -4,7 +4,11 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { AtSign, LassoSelect, Mail, UserIcon } from "lucide-react"
 
-export default function EmailForm(Props) {
+//make it so that the component can accept the callback function setSignedUp={setSignedUp}
+interface Props {
+  setSignedUp: (value: boolean) => void
+}
+export default function EmailForm(Props: Props) {
 
   const [formData, setFormData] = useState({
     name: '',
