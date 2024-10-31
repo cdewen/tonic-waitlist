@@ -17,15 +17,14 @@ export default function Home() {
       <section className="w-screen h-dvh grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="md:h-full h-80 bg-[#7d7dc3] relative overflow-hidden">
           <Image
-            src="/test.png"
+            src="/higherRes.webp"
             alt="Mobile App Screenshots"
             fill
-            className="object-contain lg:mt-0 mt-8 px-14"
+            className="object-contain mt-8 md:mt-24 px-14 object-bottom"
           />
         </div>
 
-        <main className="flex flex-col gap-8 mt-8 justify-center px-6 pb-10">
-
+        <main className="flex flex-col gap-8 md:mt-8 justify-center px-6 pb-10">
           <Image 
           src="/logo.svg"
           alt="logo"
