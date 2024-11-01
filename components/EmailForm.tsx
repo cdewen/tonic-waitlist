@@ -79,7 +79,7 @@ export default function EmailForm(Props: Props) {
                   value={formData.instagram}
                   onChange={handleInputChange}
                   className="text-accent-500 max-w-lg block h-10 w-full pl-10 focus:invalid:border-red-400 focus:invalid:ring-red-500 appearance-none rounded-lg border-2 border-slate-300 px-4 py-2 placeholder-zinc-400 duration-200 focus:outline-none focus:ring-zinc-300 sm:text-sm"
-                  placeholder="instagram username"
+                  placeholder="Instagram username"
                 required/>
             </div>
             <label htmlFor="email" className="sr-only">Name</label>
